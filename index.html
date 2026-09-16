@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analyseur de primes — One Piece</title>
+<style>
+  :root {
+    --paper: #ffffff;
+    --paper-alt: #f6f7f8;
+    --ink: #14181f;
+    --ink-soft: #5b6472;
+    --line: #e4e7eb;
+    --accent: #2a78d6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper-alt);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Inter, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin: 0 0 0.75rem;
+  }
+  .lede {
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    max-width: 60ch;
+    margin: 0;
+  }
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+  .card h2 {
+    font-size: 1.15rem;
+    margin: 0 0 0.4rem;
+  }
+  .card p.caption {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin: 0 0 1.25rem;
+  }
+  .card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+  .notes {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+  .notes h2 {
+    color: var(--ink);
+    font-size: 1.05rem;
+  }
+  .notes ul {
+    padding-left: 1.2rem;
+  }
+  .notes li {
+    margin-bottom: 0.5rem;
+  }
+  footer {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+  code {
+    background: var(--paper-alt);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <header>
+      <p class="eyebrow">Analyse de données — pandas / matplotlib</p>
+      <h1>Les primes de One Piece, en chiffres</h1>
+      <p class="lede">
+        Qui a la plus grosse prime de la série, et comment celle des
+        Chapeaux de Paille a évolué au fil de l'histoire — deux questions,
+        deux graphiques, construits à partir de données compilées à la main
+        (aucune API n'existe pour ça).
+      </p>
+    </header>
+
+    <div class="card">
+      <h2>Top 15 des primes les plus élevées</h2>
+      <p class="caption">
+        Classement des 105 personnages nommés (équipages majeurs) dont la
+        prime est connue avec certitude.
+      </p>
+      <img src="top15_primes.png" alt="Classement en barres horizontales des 15 plus grosses primes de One Piece, de Gol D. Roger (5,56 Md) à Boa Hancock (1,66 Md)">
+    </div>
+
+    <div class="card">
+      <h2>Progression des primes des Chapeaux de Paille</h2>
+      <p class="caption">
+        Chaque personnage suivi arc par arc, sur une échelle logarithmique
+        (l'écart va de 50 Berrys pour Chopper à 3 milliards pour Luffy).
+      </p>
+      <img src="progression_primes.png" alt="Courbes de progression des primes des 10 Chapeaux de Paille au fil des arcs de l'histoire, échelle logarithmique">
+    </div>
+
+    <div class="card notes">
+      <h2>Méthode</h2>
+      <ul>
+        <li>Données extraites du <a href="https://onepiece.fandom.com/wiki/List_of_Bounties" target="_blank" rel="noopener">One Piece Wiki</a>, faute d'API officielle.</li>
+        <li>Les cases vides entre deux primes connues sont comblées avec <code>pandas.DataFrame.ffill()</code> : une prime reste stable jusqu'au prochain changement connu.</li>
+        <li>Échelle logarithmique sur le graphique de progression, indispensable vu l'écart de plusieurs ordres de grandeur entre les personnages.</li>
+      </ul>
+    </div>
+
+    <footer>
+      Code source, données et scripts complets sur
+      <a href="https://github.com/Bilelbinks/analyseur-primes-one-piece" target="_blank" rel="noopener">GitHub</a>.
+    </footer>
+
+  </div>
+
+</body>
+</html>
